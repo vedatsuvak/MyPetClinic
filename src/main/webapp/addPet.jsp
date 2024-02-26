@@ -12,7 +12,7 @@
     <% 
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.include(request, response);
-        int ownerid = Integer.parseInt(request.getParameter("ownerid"));
+        int ownerid = (int) request.getAttribute("ownerid");
         VetsService service = new VetsService();
         List<Vets> vetlist =(List<Vets>) request.getAttribute("vetlist");
     %>

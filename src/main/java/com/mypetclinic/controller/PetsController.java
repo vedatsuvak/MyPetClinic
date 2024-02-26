@@ -48,6 +48,8 @@ public class PetsController {
 		pet.setOwnerid(Integer.parseInt(request.getParameter("ownerid")));
 		pet.setVetid(Integer.parseInt(request.getParameter("vetid")));
 		service.register(pet);
+		Owners owner = ownerservice.getOwnerById(pet.getOwnerid());
+		mv.addObject("ownername", owner.getOwnername());
 		String message = "Hey " + pet.getPetname() + ", Pet registered successfully!!";
 		mv.addObject("message", message);
 		mv.addObject("petlist", service.getOwnerPets(pet.getOwnerid()));
@@ -77,9 +79,11 @@ public class PetsController {
 		pet.setOwnerid(Integer.parseInt(request.getParameter("ownerid")));
 		pet.setVetid(Integer.parseInt(request.getParameter("vetid")));
 		service.updatePet(pet);
+		Owners owner = ownerservice.getOwnerById(pet.getOwnerid());
 		String message = "Hey " + pet.getPetname() + ", Pet updated successfully!!";
 		mv.addObject("message", message);
 		mv.addObject("petslist", service.getOwnerPets(pet.getOwnerid()));
+		mv.addObject("ownername", owner.getOwnername());
 		mv.setViewName("/listPets.jsp");
 		return mv;
 	}
