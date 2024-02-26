@@ -50,7 +50,7 @@ public class PetsController {
 		service.register(pet);
 		String message = "Hey " + pet.getPetname() + ", Pet registered successfully!!";
 		mv.addObject("message", message);
-		mv.addObject("petslist", service.getAllPets());
+		mv.addObject("petslist", service.getOwnerPets(pet.getOwnerid()));
 		mv.setViewName("/listPets.jsp");
 		return mv;
 	}
